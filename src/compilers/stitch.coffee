@@ -30,6 +30,13 @@ class exports.StitchCompiler extends Compiler
     @_package ?= stitch.createPackage
       dependencies: @collectDependencies()
       paths: [@getAppPath "src/app/"]
+      compilers :
+        jade : (module, filename)->
+          jade = require 'jade'
+          content = fs.readFileSync filename, 'utf8'
+          content = jade.compile(content)()
+          content = """module.exports = "#{content}";"""
+          module._compile(content, filename)
 
   minify: (source) ->
     {parse} = uglify.parser
