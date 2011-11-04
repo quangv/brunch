@@ -35,7 +35,12 @@ class exports.StitchCompiler extends Compiler
           jade = require 'jade'
           content = fs.readFileSync filename, 'utf8'
           content = jade.compile(content)()
-          content = """module.exports = "#{content}";"""
+
+          # Escape quotes & newlines
+          content = content.replace /\"/g, '\\"'
+          content = content.replace /\n|\r/g, ''
+
+          content = "module.exports = \"#{content}\";"
           module._compile(content, filename)
 
   minify: (source) ->
