@@ -6,16 +6,16 @@ describe "brunch dependencies", ->
     options =
       dependencies: [
         "ConsoleDummy.js"
-        "jquery-1.6.2.js"
+        "jquery-1.7.js"
         "underscore-1.1.7.js"
         "backbone-0.5.3.js"
       ]
       appPath: "test/fixtures/base"
     compiler = new StitchCompiler options
-    dependencyPaths = compiler.collectDependencies()
+    dependencyPaths = compiler.collect "vendor"
     expect(dependencyPaths).toEqual [
       "test/fixtures/base/src/vendor/ConsoleDummy.js",
-      "test/fixtures/base/src/vendor/jquery-1.6.2.js",
+      "test/fixtures/base/src/vendor/jquery-1.7.js",
       "test/fixtures/base/src/vendor/underscore-1.1.7.js",
       "test/fixtures/base/src/vendor/backbone-0.5.3.js"
     ]
@@ -24,18 +24,18 @@ describe "brunch dependencies", ->
     options =
       dependencies: [
         "ConsoleDummy.js"
-        "jquery-1.6.2.js"
+        "jquery-1.7.js"
         "underscore-1.1.7.js"
         "backbone-0.5.3.js"
         "backbone-localstorage.js"
       ]
+      appPath: "test/fixtures/alternate_base"
     compiler = new StitchCompiler options
-    compiler.vendorPath = "test/fixtures/alternate_vendor"
-    dependencyPaths = compiler.collectDependencies()
+    dependencyPaths = compiler.collect "vendor"
     expect(dependencyPaths).toEqual [
-      "test/fixtures/alternate_vendor/ConsoleDummy.js"
-      "test/fixtures/alternate_vendor/jquery-1.6.2.js"
-      "test/fixtures/alternate_vendor/underscore-1.1.7.js"
-      "test/fixtures/alternate_vendor/backbone-0.5.3.js"
-      "test/fixtures/alternate_vendor/backbone-localstorage.js"
+      "test/fixtures/alternate_base/src/vendor/ConsoleDummy.js"
+      "test/fixtures/alternate_base/src/vendor/jquery-1.7.js"
+      "test/fixtures/alternate_base/src/vendor/underscore-1.1.7.js"
+      "test/fixtures/alternate_base/src/vendor/backbone-0.5.3.js"
+      "test/fixtures/alternate_base/src/vendor/backbone-localstorage.js"
     ]

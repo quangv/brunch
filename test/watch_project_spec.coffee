@@ -22,13 +22,13 @@ describe "project watcher", ->
     options =
       appPath: "brunch"
       buildPath: "brunch/build"
-      minify: false
+      minify: no
       templateExtension: "eco"
 
     application = brunch.new options, (application) ->
       application.options.dependencies = [
         "ConsoleDummy.js"
-        "jquery-1.6.2.js"
+        "jquery-1.7.js"
         "underscore-1.1.7.js"
         "backbone-0.5.3.js"
       ]
@@ -53,7 +53,7 @@ describe "project watcher", ->
     visited = no
     result = ""
     zombie.visit "http://localhost:8080", (error, browser, status) ->
-      throw error.message if error
+      return error.message if error
       result = browser.html "h1"
       visited = yes
     waitsFor (-> visited), "Cannot visit the localhost", 2000
@@ -77,7 +77,7 @@ describe "project watcher", ->
     visited = no
     result = ""
     zombie.visit "http://localhost:8080", (error, browser, status) ->
-      throw error.message if error
+      return error.message if error
       result = browser.html "h1"
       visited = yes
     waitsFor (-> visited), "Cannot visit the localhost", 2000
