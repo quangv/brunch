@@ -28,15 +28,13 @@ class exports.StitchCompiler extends Compiler
       paths: [@getAppPath "src/app/"]
       compilers :
         jade : (module, filename)->
+          # Make sure to have Jade's runtime.js in src/vendor
+          # To use, templates/template.jade
+          # t = require('templates/template.jade')({template_var:'value'})
           jade = require 'jade'
           content = fs.readFileSync filename, 'utf8'
-          content = jade.compile(content)()
-
-          # Escape quotes & newlines
-          content = content.replace /\"/g, '\\"'
-          content = content.replace /\n|\r/g, ''
-
-          content = "module.exports = \"#{content}\";"
+          content = jade.compile(content, {compileDebug : false, client: true})
+          content = "module.exports = #{content};"
           module._compile(content, filename)
 
   minify: (source) ->
