@@ -20,22 +20,22 @@
     "test": "node_modules/coffee-script/bin/cake test"
   },
   "dependencies": {
-    "coffee-script": "1.1.1",
-    "underscore":    "1.2.2",
-    "eco":           "1.0.3",
-    "nomnom":        "1.0.0",
-    "stylus":        "0.19.3",
-    "async":         "0.1.15",
-    "yaml":          "0.2.2",
-    "file":          "0.1.1",
-    "stitch":        "0.3.2",
-    "uglify-js":     "1.1.1",
-    "jsdom":         "0.2.9"
+    "coffee-script": "*",
+    "underscore":    "*",
+    "eco":           "*",
+    "nomnom":        "*",
+    "stylus":        "*",
+    "async":         "*",
+    "yaml":          "*",
+    "file":          "*",
+    "stitch":        "*",
+    "uglify-js":     "*",
+    "jsdom":         "*"
   },
   "devDependencies": {
-    "express":       "2.5.1",
-    "jasmine-node":  "1.0.13",
-    "zombie":        "0.10.3"
+    "express":       "*",
+    "jasmine-node":  "*",
+    "zombie":        "*"
   },
   "repository": {
     "type": "git",
