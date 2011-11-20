@@ -1,7 +1,11 @@
 //
 // Imports
 //
-var sys = require('sys');
+try {
+  var sys = require('util');
+}catch(e){
+  var sys = require('sys');
+}
 
 
 //
