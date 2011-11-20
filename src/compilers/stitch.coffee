@@ -26,16 +26,16 @@ class exports.StitchCompiler extends Compiler
     @_package ?= stitch.createPackage
       dependencies: @collect 'vendor'
       paths: [@getAppPath 'src/app/']
-	  compilers :
-		jade : (module, filename)->
-		  # Make sure to have Jade's runtime.js in src/vendor
-		  # To use, templates/template.jade
-		  # t = require('templates/template.jade')({template_var:'value'})
-		  jade = require 'jade'
-		  content = fs.readFileSync filename, 'utf8'
-		  content = jade.compile(content, {compileDebug : false, client: true})
-		  content = "module.exports = #{content};"
-		  module._compile(content, filename)
+      compilers :
+        jade : (module, filename)->
+          # Make sure to have Jade's runtime.js in src/vendor
+          # To use, templates/template.jade
+          # t = require('templates/template.jade')({template_var:'value'})
+          jade = require 'jade'
+          content = fs.readFileSync filename, 'utf8'
+          content = jade.compile(content, {compileDebug : false, client: true})
+          content = "module.exports = #{content};"
+          module._compile(content, filename)
 
   minify: (source) ->
     {parse} = uglify.parser
