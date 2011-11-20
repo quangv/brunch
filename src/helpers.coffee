@@ -1,7 +1,10 @@
 fs  = require 'fs'
 path = require 'path'
 fileUtil = require 'file'
-sys = require 'sys'
+try
+  util = require 'util'
+catch e
+  util = require 'sys'
 {exec, spawn} = require 'child_process'
 {EventEmitter} = require 'events'
 async = require 'async'
@@ -17,7 +20,7 @@ exports.extend = extend = (object, properties) ->
 exports.copyFile = (source, destination, callback) ->
   read = fs.createReadStream source
   write = fs.createWriteStream destination
-  sys.pump read, write, -> callback()
+  util.pump read, write, -> callback()
 
 
 # walk through tree, creates directories and copy files
