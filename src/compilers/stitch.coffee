@@ -33,7 +33,7 @@ class exports.StitchCompiler extends Compiler
           # t = require('templates/template.jade')({template_var:'value'})
           jade = require 'jade'
           content = fs.readFileSync filename, 'utf8'
-          content = jade.compile(content, {compileDebug : false, client: true})
+          content = jade.compile(content, {compileDebug : false, client: true, filename: filename})
           content = "module.exports = #{content};"
           module._compile(content, filename)
 
