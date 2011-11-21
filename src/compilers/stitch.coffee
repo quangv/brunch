@@ -10,7 +10,7 @@ helpers = require '../helpers'
 
 class exports.StitchCompiler extends Compiler
   patterns: ->
-    [/\.coffee$/, /src\/.*\.js$/, new RegExp "#{@options.templateExtension}$"]
+    [/\.coffee$/, /\.jade$/, /src\/.*\.js$/, new RegExp "#{@options.templateExtension}$"]
 
   collect: (type) ->
     directory = @getAppPath "src/#{type}"
