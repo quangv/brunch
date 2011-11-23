@@ -1,10 +1,7 @@
 fs  = require 'fs'
 path = require 'path'
 fileUtil = require 'file'
-try
-  util = require 'util'
-catch e
-  util = require 'sys'
+util = require 'util'
 {exec, spawn} = require 'child_process'
 {EventEmitter} = require 'events'
 async = require 'async'
@@ -49,7 +46,7 @@ exports.walkTreeAndCopyFiles = walkTree = (source, destination, callback) ->
             next()
     , callback
 
-exports.createBuildDirectories = (buildPath, directories...) ->
+exports.createBuildDirectories = (buildPath, directories) ->
   for dirPath in directories
     fileUtil.mkdirsSync path.join(buildPath, dirPath), 0755
 
