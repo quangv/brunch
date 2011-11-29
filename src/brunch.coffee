@@ -21,7 +21,7 @@ exports.Brunch = class Brunch
     templateExtension: 'eco'  # Temporary.
 
   constructor: (options) ->
-    helpers.extend @defaultConfig, options
+    options = helpers.extend @defaultConfig, options
     options.buildPath ?= path.join options.appPath, 'build/'
     # Nomnom arg parser creates properties in options for internal use
     # We don't need them.
@@ -94,13 +94,13 @@ exports.Brunch = class Brunch
 
   build: (callback) ->
     callback = @_makeCallback callback
-    helpers.createBuildDirectories @options.buildPath, ['web/css', 'web/js']
+    helpers.createBuildDirectories @options.buildPath
     @_compile @compilers, callback
     this
 
   watch: (callback) ->
     callback = @_makeCallback callback
-    helpers.createBuildDirectories @options.buildPath, ['web/css', 'web/js']
+    helpers.createBuildDirectories @options.buildPath
     sourcePath = path.join @options.appPath, 'src'
     timer = null
 
